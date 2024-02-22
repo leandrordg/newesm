@@ -29,6 +29,10 @@ interface LoginFormProps {}
 export function LoginForm({}: LoginFormProps) {
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl");
+  const urlError =
+    searchParams.get("error") === "OAuthAccountNotLinked"
+      ? "Email already in use with different provider!"
+      : "";
 
   const [showTwoFactor, setShowTwoFactor] = useState(false);
   const [error, setError] = useState<string | undefined>("");
@@ -146,7 +150,7 @@ export function LoginForm({}: LoginFormProps) {
               </>
             )}
           </div>
-          <FormError message={error} />
+          <FormError message={error || urlError} />
           <FormSuccess message={success} />
           <Button disabled={isPending} type="submit" className="w-full">
             {showTwoFactor ? "Confirmar" : "Entrar"}
