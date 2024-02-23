@@ -20,7 +20,7 @@ export default function HomePage() {
       <main className="flex flex-col h-full w-full px-2 pt-48">
         <div className="max-w-7xl mx-auto text-center">
           <div className="flex flex-col gap-6">
-            <h1 className="drop-shadow uppercase font-bold text-4xl md:text-5xl lg:text-6xl">
+            <h1 className="text-white drop-shadow uppercase font-bold text-4xl md:text-5xl lg:text-6xl">
               A rede social personalizável, <br />
               do seu{" "}
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 via-violet-500 to-purple-500">
