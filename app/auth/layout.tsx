@@ -1,4 +1,7 @@
 import { Metadata } from "next";
+import Image from "next/image";
+
+import background from "@/public/background.svg";
 
 export const metadata: Metadata = {
   title: "ESM - Autenticação",
@@ -11,7 +14,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="h-full flex items-center justify-center bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-500 to-blue-500">
+    <div className="h-full flex items-center justify-center relative">
+      <Image
+        src={background}
+        alt="Background"
+        className="fixed -z-10 object-cover"
+        fill
+      />
       {children}
     </div>
   );

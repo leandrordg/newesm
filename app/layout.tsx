@@ -1,11 +1,13 @@
 import "@/app/globals.css";
+
 import type { Metadata } from "next";
 import { SessionProvider } from "next-auth/react";
 import { Inter } from "next/font/google";
-import { Toaster } from "@/components/ui/sonner";
 
 import { auth } from "@/auth";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Toaster } from "@/components/ui/sonner";
+import { cn } from "@/lib/utils";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,7 +27,7 @@ export default async function RootLayout({
   return (
     <SessionProvider session={session}>
       <html lang="pt-BR">
-        <body className={inter.className}>
+        <body className={cn("relative", inter.className)}>
           <ThemeProvider
             attribute="class"
             defaultTheme="system"

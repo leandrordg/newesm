@@ -31,7 +31,7 @@ export async function login(
   const existingUser = await getUserByEmail(email);
 
   if (!existingUser || !existingUser.email || !existingUser.password) {
-    return { error: "E-mail informado não existe!" };
+    return { error: "E-mail não encontrado!" };
   }
 
   if (!existingUser.emailVerified) {
@@ -100,6 +100,8 @@ export async function login(
       switch (error.type) {
         case "CredentialsSignin":
           return { error: "Credenciais inválidas!" };
+        case "OAuthAccountNotLinked":
+          return { error: "Conta não vinculada!" };
         default:
           return { error: "Erro desconhecido!" };
       }

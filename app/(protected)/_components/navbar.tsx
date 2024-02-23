@@ -5,41 +5,42 @@ import { usePathname } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import { UserButton } from "@/components/auth/user-button";
+import { SheetMenu } from "@/components/auth/sheet-menu";
 
-interface NavbarProps {}
+interface NavbarProtectedNavbarProps {}
 
-export function Navbar({}: NavbarProps) {
+export function NavbarProtected({}: NavbarProtectedNavbarProps) {
   const pathname = usePathname();
 
   return (
-    <nav className="bg-muted flex justify-between items-center p-4 rounded-xl w-[600px] shadow-sm">
-      <div className="flex gap-x-2">
-        <Button
-          asChild
-          variant={pathname === "/server" ? "default" : "secondary"}
-        >
-          <Link href="/server">Servidor</Link>
-        </Button>
-        <Button
-          asChild
-          variant={pathname === "/client" ? "default" : "secondary"}
-        >
-          <Link href="/client">Cliente</Link>
-        </Button>
-        <Button
-          asChild
-          variant={pathname === "/admin" ? "default" : "secondary"}
-        >
-          <Link href="/admin">Admin</Link>
-        </Button>
-        <Button
-          asChild
-          variant={pathname === "/settings" ? "default" : "secondary"}
-        >
-          <Link href="/settings">Configurações</Link>
-        </Button>
+    <nav className="bg-muted px-6 py-3 w-full shadow-sm">
+      <div className="flex justify-between items-center max-w-4xl mx-auto">
+        <div className="sm:hidden">
+          <SheetMenu pathname={pathname} />
+        </div>
+
+        <div className="hidden sm:flex gap-x-2">
+          <Button
+            asChild
+            variant={pathname === "/client" ? "default" : "secondary"}
+          >
+            <Link href="/client">Cliente</Link>
+          </Button>
+          <Button
+            asChild
+            variant={pathname === "/admin" ? "default" : "secondary"}
+          >
+            <Link href="/admin">Admin</Link>
+          </Button>
+          <Button
+            asChild
+            variant={pathname === "/settings" ? "default" : "secondary"}
+          >
+            <Link href="/settings">Configurações</Link>
+          </Button>
+        </div>
+        <UserButton />
       </div>
-      <UserButton />
     </nav>
   );
 }
